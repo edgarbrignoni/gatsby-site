@@ -6,6 +6,12 @@ module.exports = {
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
   plugins: [
+    {
+      resolve: "gatsby-source-buttercms",
+      options: {
+        authToken: "a562c5c6b85ad9139385f24bf08c31226d41fa9e",
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
