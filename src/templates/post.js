@@ -3,13 +3,15 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 
 export default function Template({ data }) {
-  const { title, date, body } = data.butterPost
+  const { slug } = data.butterPage
+  const { title, meta_description } = data.butterPage.seo
+ console.log('slug', slug);
   return (
     <div>
       <Layout>
         <h1>{title}</h1>
-        <h2>{date}</h2>
-        <div dangerouslySetInnerHTML={{ __html: body }} />
+        <h2>{meta_description}</h2>
+        <div dangerouslySetInnerHTML={{ __html: slug }} />
       </Layout>
     </div>
   )
@@ -17,10 +19,12 @@ export default function Template({ data }) {
 
 export const pageQuery = graphql`
   query ($slug: String!) {
-    butterPost(slug: { eq: $slug }) {
-      title
-      date
-      body
+    butterPage(slug: { eq: $slug }) {
+      slug
+      seo {
+        title
+        meta_description
+      }
     }
   }
 `

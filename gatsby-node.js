@@ -7,7 +7,7 @@ exports.createPages = ({ actions, graphql }) => {
 
   return graphql(`
     {
-      allButterPost {
+      allButterPage {
         edges {
           node {
             slug
@@ -20,7 +20,7 @@ exports.createPages = ({ actions, graphql }) => {
       return Promise.reject(result.errors)
     }
 
-    result.data.allButterPost.edges.forEach(({ node }) => {
+    result.data.allButterPage.edges.forEach(({ node }) => {
       console.log(node)
       createPage({
         path: `/blog/${node.slug}`,

@@ -3,11 +3,11 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
 const BlogPage = ({ data }) => {
-  const posts = data.allButterPost.edges.map(({ node }) => {
+  const posts = data.allButterPage.edges.map(({ node }) => {
     return (
       <div>
         <Link key={node.id} to={`/blog/${node.slug}`}>
-          {node.title}
+          {node.seo.title}
         </Link>
         <br />
       </div>
@@ -21,12 +21,14 @@ export default BlogPage
 
 export const pageQuery = graphql`
   query {
-    allButterPost {
+    allButterPage {
       edges {
         node {
           id
           slug
-          title
+          seo {
+            title
+          }
         }
       }
     }
