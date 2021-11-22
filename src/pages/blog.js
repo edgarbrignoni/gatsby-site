@@ -5,10 +5,8 @@ import Layout from "../components/layout"
 const BlogPage = ({ data }) => {
   const posts = data.allButterPage.edges.map(({ node }) => {
     return (
-      <div>
-        <Link key={node.id} to={`/blog/${node.slug}`}>
-          {node.seo.title}
-        </Link>
+      <div key={node.id}>
+        <Link to={`/blog/${node.slug}`}>{node.seo.meta_description}</Link>
         <br />
       </div>
     )
@@ -28,6 +26,7 @@ export const pageQuery = graphql`
           slug
           seo {
             title
+            meta_description
           }
         }
       }
